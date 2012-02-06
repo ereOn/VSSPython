@@ -78,7 +78,7 @@ class VSS(object):
                 True: '-GF',
                 False: '-GF-',
             },
-            'get_folder': '-GL"{param}"',
+            'get_folder': '-GL{param}',
             'get_eol': {
                 'lf': '-GN',
                 'cr': '-GR',
@@ -173,7 +173,10 @@ class VSS(object):
 
             elif isinstance(map_entry, str):
 
-                result.append(map_entry.replace('{param}', value or ''))
+                if isinstance(value, str):
+                    result.append(map_entry.replace('{param}', value or ''))
+                elif value:
+                    result.append(map_entry)
 
         return result
 
