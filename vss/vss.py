@@ -197,3 +197,207 @@ class VSS(object):
             files = [str(files)]
 
         return self.__execute(['Add'] + files + self.__to_options_list(options))
+
+    def branch(self, fname, **options):
+        """
+        Calls the VSS Branch command for the specified file.
+
+        Returns the standard output.
+        """
+
+        return self.__execute(['Branch'] + [fname] + self.__to_options_list(options))
+
+    def checkin(self, files, **options):
+        """
+        Calls the VSS Checkin command for the specified files.
+
+        Returns the standard output.
+        """
+
+        if not isinstance(files, list):
+            files = [str(files)]
+
+        return self.__execute(['Checkin'] + files + self.__to_options_list(options))
+
+    def checkout(self, files, **options):
+        """
+        Calls the VSS Checkout command for the specified files.
+
+        Returns the standard output.
+        """
+
+        if not isinstance(files, list):
+            files = [str(files)]
+
+        return self.__execute(['Checkout'] + files + self.__to_options_list(options))
+
+    def cloak(self, path, **options):
+        """
+        Calls the VSS Cloak command for the specified path.
+
+        Returns the standard output.
+        """
+
+        return self.__execute(['Cloak'] + [path] + self.__to_options_list(options))
+
+    def comment(self, items, **options):
+        """
+        Calls the VSS Comment command for the specified items.
+
+        Returns the standard output.
+        """
+
+        if not isinstance(items, list):
+            items = [str(items)]
+
+        return self.__execute(['Comment'] + items + self.__to_options_list(options))
+
+    def copy(self, item, **options):
+        """
+        Calls the VSS Copy command for the specified item.
+
+        Returns the standard output.
+        """
+
+        return self.__execute(['Copy'] + [item] + self.__to_options_list(options))
+
+    def set_current_project(self, project, **options):
+        """
+        Calls the VSS CP command for the specified project.
+
+        Returns the standard output.
+        """
+
+        return self.__execute(['CP'] + [project] + self.__to_options_list(options))
+
+    def create(self, project, **options):
+        """
+        Calls the VSS Create command for the specified project.
+
+        Returns the standard output.
+        """
+
+        return self.__execute(['Create'] + [project] + self.__to_options_list(options))
+
+    def decloak(self, path, **options):
+        """
+        Calls the VSS Decloak command for the specified path.
+
+        Returns the standard output.
+        """
+
+        return self.__execute(['Decloak'] + [path] + self.__to_options_list(options))
+
+    def delete(self, items, **options):
+        """
+        Calls the VSS Delete command for the specified items.
+
+        Returns the standard output.
+        """
+
+        if not isinstance(items, list):
+            items = [str(items)]
+
+        return self.__execute(['Delete'] + items + self.__to_options_list(options))
+
+    def deploy(self, path, **options):
+        """
+        Calls the VSS Deploy command for the specified path.
+
+        Returns the standard output.
+        """
+
+        return self.__execute(['Deploy'] + [path] + self.__to_options_list(options))
+
+    def destroy(self, items, **options):
+        """
+        Calls the VSS Destroy command for the specified items.
+
+        Returns the standard output.
+        """
+
+        if not isinstance(items, list):
+            items = [str(items)]
+
+        return self.__execute(['Destroy'] + items + self.__to_options_list(options))
+
+    def diff(self, files, **options):
+        """
+        Calls the VSS Diff command for the specified files.
+
+        Returns the standard output.
+        """
+
+        if not isinstance(files, list):
+            files = [str(files)]
+
+        return self.__execute(['Diff'] + items + self.__to_options_list(options))
+
+    def dir(self, path, **options):
+        """
+        Calls the VSS Dir command for the specified path.
+
+        Returns the standard output.
+        """
+
+        return self.__execute(['Dir'] + [path] + self.__to_options_list(options))
+
+    def filetype(self, items, **options):
+        """
+        Calls the VSS Filetype command for the specified items.
+
+        Returns the standard output.
+        """
+
+        if not isinstance(items, list):
+            items = [str(items)]
+
+        return self.__execute(['Filetype'] + items + self.__to_options_list(options))
+
+    def find_in_files(self, pattern, items=None, **options):
+        """
+        Calls the VSS FindinFiles command for the specified pattern and items.
+
+        Returns the standard output.
+        """
+
+        if items is None:
+            items = []
+        elif not isinstance(items, list):
+            items = [str(items)]
+
+        return self.__execute(['FindinFiles', pattern] + items + self.__to_options_list(options))
+
+    def get(self, items, **options):
+        """
+        Calls the VSS Get command for the specified items.
+
+        Returns the standard output.
+        """
+
+        if not isinstance(items, list):
+            items = [str(items)]
+
+        return self.__execute(['Get'] + items + self.__to_options_list(options))
+
+    def help(self, command=None, **options):
+        """
+        Calls the VSS Help command for the specified command.
+
+        Returns the standard output.
+        """
+
+        return self.__execute(['Help'] + ((not command is None) and [command] or []) + self.__to_options_list(options))
+
+    def history(self, items, **options):
+        """
+        Calls the VSS History command for the specified items.
+
+        Returns the standard output.
+        """
+
+        if not isinstance(items, list):
+            items = [str(items)]
+
+        return self.__execute(['History'] + items + self.__to_options_list(options))
+
