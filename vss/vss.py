@@ -64,11 +64,11 @@ class VSS(object):
             'files_display': {
                 True: '-F',
                 False: '-F-',
-            }
+            },
             'get_local': {
                 True: '-G',
                 False: '-G-',
-            }
+            },
             'get_file_compare': {
                 'content': '-GCC',
                 'datetime': '-GCD',
@@ -77,7 +77,7 @@ class VSS(object):
             'get_force_dir': {
                 True: '-GF',
                 False: '-GF-',
-            }
+            },
             'get_folder': '-GL"{param}"',
             'get_eol': {
                 'lf': '-GN',
@@ -107,14 +107,14 @@ class VSS(object):
             'keep_checked_out': {
                 True: '-K',
                 False: '-K-',
-            }
+            },
             'label': '-L{param}',
             'local': '-L',
             'no_local': '-L-',
             'exclusive_checkouts': {
                 True: '-M-',
                 False: '-M',
-            }
+            },
             'file_name_mode': {
                 'default': '-N',
                 'long': '-NL',
@@ -135,10 +135,10 @@ class VSS(object):
             'smart_mode': {
                 True: '-S',
                 False: '-S-',
-            }
+            },
             'user': {
                 'current': '-U',
-            }
+            },
             'user_name': '-U{param}',
             'version_number': '-V{param}',
             'version_date': '-Vd{param}',
@@ -400,4 +400,240 @@ class VSS(object):
             items = [str(items)]
 
         return self.__execute(['History'] + items + self.__to_options_list(options))
+
+    def label(self, items, **options):
+        """
+        Calls the VSS Label command for the specified items.
+
+        Returns the standard output.
+        """
+
+        if not isinstance(items, list):
+            items = [str(items)]
+
+        return self.__execute(['Label'] + items + self.__to_options_list(options))
+
+    def links(self, items, **options):
+        """
+        Calls the VSS Links command for the specified items.
+
+        Returns the standard output.
+        """
+
+        if not isinstance(items, list):
+            items = [str(items)]
+
+        return self.__execute(['Links'] + items + self.__to_options_list(options))
+
+    def locate(self, items, **options):
+        """
+        Calls the VSS Locate command for the specified items.
+
+        Returns the standard output.
+        """
+
+        if not isinstance(items, list):
+            items = [str(items)]
+
+        return self.__execute(['Locate'] + items + self.__to_options_list(options))
+
+    def merge(self, files, **options):
+        """
+        Calls the VSS Merge command for the specified files.
+
+        Returns the standard output.
+        """
+
+        if not isinstance(files, list):
+            files = [str(files)]
+
+        return self.__execute(['Merge'] + files + self.__to_options_list(options))
+
+    def move(self, subproject, new_parent_project, **options):
+        """
+        Calls the VSS Move command for the specified project.
+
+        Returns the standard output.
+        """
+
+        return self.__execute(['Move', subproject, new_parent_project] + self.__to_options_list(options))
+
+    def password(self, **options):
+        """
+        Calls the VSS Password command.
+
+        Returns the standard output.
+        """
+
+        return self.__execute(['Password'] + self.__to_options_list(options))
+
+    def paths(self, files, **options):
+        """
+        Calls the VSS Paths command for the specified files.
+
+        Returns the standard output.
+        """
+
+        if not isinstance(files, list):
+            files = [str(files)]
+
+        return self.__execute(['Paths'] + files + self.__to_options_list(options))
+
+    def physical(self, **options):
+        """
+        Calls the VSS Physical command.
+
+        Returns the standard output.
+        """
+
+        return self.__execute(['Physical'] + self.__to_options_list(options))
+
+    def pin(self, items, **options):
+        """
+        Calls the VSS Pin command for the specified items.
+
+        Returns the standard output.
+        """
+
+        if not isinstance(items, list):
+            items = [str(items)]
+
+        return self.__execute(['Pin'] + items + self.__to_options_list(options))
+
+    def project(self, **options):
+        """
+        Calls the VSS Project command.
+
+        Returns the standard output.
+        """
+
+        return self.__execute(['Project'] + self.__to_options_list(options))
+
+    def properties(self, items, **options):
+        """
+        Calls the VSS Properties command for the specified items.
+
+        Returns the standard output.
+        """
+
+        if not isinstance(items, list):
+            items = [str(items)]
+
+        return self.__execute(['Properties'] + items + self.__to_options_list(options))
+
+    def purge(self, items, **options):
+        """
+        Calls the VSS Purge command for the specified items.
+
+        Returns the standard output.
+        """
+
+        if not isinstance(items, list):
+            items = [str(items)]
+
+        return self.__execute(['Purge'] + items + self.__to_options_list(options))
+
+    def recover(self, items, **options):
+        """
+        Calls the VSS Recover command for the specified items.
+
+        Returns the standard output.
+        """
+
+        if not isinstance(items, list):
+            items = [str(items)]
+
+        return self.__execute(['Recover'] + items + self.__to_options_list(options))
+
+    def rename(self, item, new_name, **options):
+        """
+        Calls the VSS Rename command for the specified item.
+
+        Returns the standard output.
+        """
+
+        return self.__execute(['Recover', item, new_name] + self.__to_options_list(options))
+
+    def rollback(self, fname, **options):
+        """
+        Calls the VSS Rollback command for the specified file.
+
+        Returns the standard output.
+        """
+
+        return self.__execute(['Rollback', fname] + self.__to_options_list(options))
+
+    def share(self, item, **options):
+        """
+        Calls the VSS Share command for the specified item.
+
+        Returns the standard output.
+        """
+
+        return self.__execute(['Share', item] + self.__to_options_list(options))
+
+    def status(self, items=None, **options):
+        """
+        Calls the VSS Status command for the specified items.
+
+        Returns the standard output.
+        """
+
+        if items is None:
+            items = []
+        elif not isinstance(items, list):
+            items = [str(items)]
+
+        return self.__execute(['Status'] + items + self.__to_options_list(options))
+
+    def undo_checkout(self, items, **options):
+        """
+        Calls the VSS Undocheckout command for the specified items.
+
+        Returns the standard output.
+        """
+
+        if not isinstance(items, list):
+            items = [str(items)]
+
+        return self.__execute(['Undocheckout'] + items + self.__to_options_list(options))
+
+    def unpin(self, items, **options):
+        """
+        Calls the VSS Unpin command for the specified items.
+
+        Returns the standard output.
+        """
+
+        if not isinstance(items, list):
+            items = [str(items)]
+
+        return self.__execute(['Unpin'] + items + self.__to_options_list(options))
+
+    def view(self, fname, **options):
+        """
+        Calls the VSS View command for the specified file.
+
+        Returns the standard output.
+        """
+
+        return self.__execute(['View', fname] + self.__to_options_list(options))
+
+    def whoami(self, **options):
+        """
+        Calls the VSS Whoami command.
+
+        Returns the standard output.
+        """
+
+        return self.__execute(['Whoami'] + self.__to_options_list(options))
+
+    def set_working_folder(self, folder, project=None, **options):
+        """
+        Calls the VSS Workfold command for the specified project.
+
+        Returns the standard output.
+        """
+
+        return self.__execute(['Workfold'] + ((not project is None) and [project] or []) + [folder] + self.__to_options_list(options))
 
