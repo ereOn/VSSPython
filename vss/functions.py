@@ -35,5 +35,5 @@ def checkin(repository_path, vss_project_path, local_path, ss_path=None):
 
     vss = VSS(repository_path, ss_path)
 
-    return vss.checkin(vss_project_path, recursive=True, get_folder=local_path, output='error')
+    return vss.checkin(vss_project_path, recursive=True, get_folder=local_path, output='error', comment_no_text=True)
 
