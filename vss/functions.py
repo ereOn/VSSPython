@@ -37,3 +37,13 @@ def checkin(repository_path, vss_project_path, local_path, ss_path=None):
 
     return vss.checkin(vss_project_path, recursive=True, get_folder=local_path, output='error', comment_no_text=True)
 
+def get(repository_path, vss_project_path, local_path, ss_path=None):
+    """
+    Get a read-only copy of a VSS project into the specified local directory.
+
+    Return the standard output.
+    """
+
+    vss = VSS(repository_path, ss_path)
+
+    return vss.get(vss_project_path, recursive=True, get_folder=local_path, output='error', ignore='all')
