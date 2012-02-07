@@ -12,7 +12,7 @@ class VSS(object):
     A VSS class that handles all low-level operations on a VSS repository.
     """
 
-    def __init__(self, repository_path, ss_path=None):
+    def __init__(self, repository_path=None, ss_path=None):
         """
         Create a VSS instance attached to a specified repository_path repository.
         """
@@ -28,7 +28,10 @@ class VSS(object):
         """
 
         env = os.environ.copy()
-        env['SSDIR'] = self.repository_path
+
+        if not 'SSDIR' in env:
+            if self.repository_path:
+                env['SSDIR'] = self.repository_path
 
         if env.get('VSS_PYTHON_TRACE', None):
             print ' '.join([self.ss_path] + argv)
