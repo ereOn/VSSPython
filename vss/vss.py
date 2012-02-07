@@ -30,7 +30,7 @@ class VSS(object):
         env = os.environ.copy()
         env['SSDIR'] = self.repository_path
 
-        if os.environ().get('VSS_PYTHON_TRACE', None):
+        if env.get('VSS_PYTHON_TRACE', None):
             print ' '.join([self.ss_path] + argv)
 
         return subprocess.check_output([self.ss_path] + argv, env=env)
