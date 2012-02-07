@@ -29,9 +29,8 @@ class VSS(object):
 
         env = os.environ.copy()
 
-        if not 'SSDIR' in env:
-            if self.repository_path:
-                env['SSDIR'] = self.repository_path
+        if self.repository_path:
+            env['SSDIR'] = self.repository_path
 
         if env.get('VSS_PYTHON_TRACE', None):
             print ' '.join([self.ss_path] + argv)
